@@ -1,7 +1,7 @@
 const skrep = require("../lib/skrep");
 const { cekKey } = require('../database/db');
 
-async function youtubePlay(req, res) {
+async function asupan(req, res) {
     const query = req.query.query;
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
@@ -23,3 +23,4 @@ async function youtubePlay(req, res) {
         })
     });
 }
+module.exports = { asupan };
