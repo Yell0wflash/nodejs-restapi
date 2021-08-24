@@ -14,7 +14,7 @@ async function asupan(req, res) {
         message: `apikey ${apikey} not found, please register first!`
     });
     skrep.asupantiktok(query).then(result => {
-        res.status(200).send({status: 200, result: result});
+        res.status(200).send({status: 200, result});
     }).catch(error => {
         console.log(error);
         res.status(500).send({
