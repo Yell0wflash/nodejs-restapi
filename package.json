@@ -43,6 +43,7 @@
     "nodemon": "^2.0.12",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "request": "^2.88.2",
     "yt-search": "^2.10.0",
     "ytdl-core": "^4.9.0"
   }
