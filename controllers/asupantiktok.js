@@ -13,8 +13,8 @@ async function asupan(req, res) {
         status: 403,
         message: `apikey ${apikey} not found, please register first!`
     });
-    skrep.asupantiktok(query).then(res => {
-        res.status(200).send({status: 200, creator: 'Fajar Ihsana', username: res.username, data: { caption: res.media.caption, likes: res.media.likes, comments: res.media.comments, share: res.media.share, videourl: res.media.videourl}});
+    skrep.asupantiktok(query).then(resu => {
+        res.status(200).send({status: 200, creator: 'Fajar Ihsana', username: resu.username, data: { caption: resu.media.caption, likes: resu.media.likes, comments: resu.media.comments, share: resu.media.share, videourl: resu.media.videourl}});
     }).catch(error => {
         console.log(error);
         res.status(500).send({
