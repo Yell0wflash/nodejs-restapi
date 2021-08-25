@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { cekKey } = require('../database/db'); 
 const { youtubePlay, youtubeMp4, youtubeMp3 } = require('../controllers/yt');
-const { asupan } = require('../controllers/asupantiktok')
+const fitur = require('../controllers/fitur')
 const { cakLontong, bijak, quotes, fakta, ptl, motivasi } = require('../controllers/randomtext');
 
 router.get('/checkkey', async (req, res) => {
@@ -20,23 +20,16 @@ router.get('/checkkey', async (req, res) => {
 });
 
 router.get('/ytplay', youtubePlay);
-
 router.get('/ytmp4', youtubeMp4);
-
 router.get('/ytmp3', youtubeMp3);
-
 router.get('/caklontong', cakLontong);
-
 router.get('/quotes', quotes);
-
 router.get('/fakta', fakta);
-
 router.get('/bijak', bijak);
-
 router.get('/ptl', ptl);
-
 router.get('/motivasi', motivasi);
-
-router.get('/asupan', asupan);
-
+router.get('/asupan', fitur.asupan);
+router.get('/sliding', fitur.sliding);
+router.get('/colorful', fitur.colorful);
+router.get('/army', fitur.army);
 module.exports = router;
