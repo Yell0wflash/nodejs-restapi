@@ -110,6 +110,37 @@ exports.randomgore = async(req, res) => {
         })
     });
 }
+exports.infogempa = async(req, res) => {
+    const apikey = req.query.apikey;
+    if (apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+    skrep.gempa().then(resu => {
+        hdata = resu.data
+        res.status(200).send({status: 200, creator: 'Fajar Ihsana', data: { 
+            map: hdata.imagemap, 
+            magnitude: hdata.magnitude, 
+            kedalaman: hdata.kedalaman, 
+            wilayah: hdata.wilayah, 
+            waktu: hdata.waktu,
+            lintang_bujur: hdata.lintang_bujur,
+            dirasakan: hdata.dirasakan
+        }});
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+}
+
 exports.sliding = async(req, res) => {
     const query = req.query.text;
     const apikey = req.query.apikey;
