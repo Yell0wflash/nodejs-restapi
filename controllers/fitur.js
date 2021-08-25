@@ -71,8 +71,75 @@ exports.sfiles = async(req, res) => {
         })
     });
 }
-
-exports.grups = async(req, res) => {
+exports.sfiledown = async(req, res) => {
+    const query = req.query.url;
+    const apikey = req.query.apikey;
+    if (query === undefined || apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter query & apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+    skrep.sfiledown(query).then(resu => {
+        hdata = resu.data
+        res.status(200).send({
+            status: 200, 
+            creator: 'Fajar Ihsana', 
+            data: {
+                judul: hdata.judul,
+                size: hdata.size,
+                type: hdata.type,
+                desc: hdata.desc,
+                uploader: hdata.uploader,
+                uploaded: hdata.uploaded,
+                download_count : hdata.download_count,
+                link: hdata.link
+            }
+        });
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+}
+exports.zippy = async(req, res) => {
+    const query = req.query.url;
+    const apikey = req.query.apikey;
+    if (query === undefined || apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter url & apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+    skrep.zippydl(query).then(resu => {
+        hdata = resu.data
+        res.status(200).send({
+            status: 200, 
+            creator: 'Fajar Ihsana', 
+            data: {
+                nama: hdata.judul,
+                size: hdata.size,
+                uploaded: hdata.uploaded,
+                linkdl: hdata.link
+            }
+        });
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+}
+exports.happymod = async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
@@ -84,7 +151,85 @@ exports.grups = async(req, res) => {
         status: 403,
         message: `apikey ${apikey} not found, please register first!`
     });
-    skrep.carigc(query).then(resu => {
+    skrep.happymod(query).then(resu => {
+        res.status(200).send({
+            status: 200, 
+            creator: 'Fajar Ihsana', 
+            data: resu.data
+        });
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+}
+exports.apkmody = async(req, res) => {
+    const query = req.query.query;
+    const apikey = req.query.apikey;
+    if (query === undefined || apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter query & apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+    skrep.apkmody(query).then(resu => {
+        res.status(200).send({
+            status: 200, 
+            creator: 'Fajar Ihsana', 
+            data: resu.data
+        });
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+}
+exports.happymod = async(req, res) => {
+    const query = req.query.query;
+    const apikey = req.query.apikey;
+    if (query === undefined || apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter query & apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+    skrep.happymod(query).then(resu => {
+        res.status(200).send({
+            status: 200, 
+            creator: 'Fajar Ihsana', 
+            data: resu.data
+        });
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+}
+exports.android1 = async(req, res) => {
+    const query = req.query.query;
+    const apikey = req.query.apikey;
+    if (query === undefined || apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter query & apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+    skrep.android1(query).then(resu => {
         res.status(200).send({
             status: 200, 
             creator: 'Fajar Ihsana', 
