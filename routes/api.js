@@ -23,7 +23,7 @@ router.get('/downloader/ytplay', youtubePlay);
 router.get('/downloader/ytmp4', youtubeMp4);
 router.get('/downloader/ytmp3', youtubeMp3);
 router.get('/downloader/sfile', fitur.sfiledown);
-router.get('/downloader/zippy', fitur.zippydl);
+router.get('/downloader/zippy', fitur.zippy);
 
 //game
 router.get('/game/caklontong', cakLontong);
