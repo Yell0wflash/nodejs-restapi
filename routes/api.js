@@ -35,4 +35,6 @@ router.get('/videomaker/army', fitur.army);
 router.get('/videomaker/bold', fitur.bold);
 router.get('/videomaker/glowing', fitur.glowing);
 router.get('/videomaker/retro', fitur.retro);
+router.get('/random/gore', fitur.randomgore);
+router.get('/search/gore', fitur.searchgore);
 module.exports = router;
