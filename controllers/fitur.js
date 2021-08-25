@@ -217,7 +217,7 @@ exports.happymod = async(req, res) => {
         })
     });
 }
-exports.android1 = async(req, res) => {
+exports.androidone = async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
