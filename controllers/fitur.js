@@ -255,7 +255,7 @@ exports.androidone = async(req, res) => {
         res.status(200).send({
             status: 200, 
             creator: 'Fajar Ihsana', 
-            data: resu
+            data: resu.data
         });
     }).catch(error => {
         console.log(error);
