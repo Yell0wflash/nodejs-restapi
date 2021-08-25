@@ -42,6 +42,13 @@ router.get('/search/asupan', fitur.asupan);
 router.get('/search/sfile', fitur.sfiles);
 router.get('/search/group', fitur.grups);
 router.get('/search/ghuser', fitur.usergh);
+router.get('/search/kiryu', fitur.kiryu);
+router.get('/search/dewabatch', fitur.dewabatch);
+router.get('/search/wattpad', fitur.wattpad);
+router.get('/search/drakor', fitur.drakor);
+router.get('/search/wallhd', fitur.wallpaperhd);
+router.get('/search/konachan', fitur.konachan);
+router.get('/search/wiki', fitur.wiki);
 router.get('/search/resepmasakan', fitur.resepmasakan);
 
 //videomaker
