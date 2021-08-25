@@ -45,6 +45,43 @@ exports.searchgore = async(req, res) => {
         })
     });
 }
+exports.resepmasakan = async(req, res) => {
+    const query = req.query.query;
+    const apikey = req.query.apikey;
+    if (query === undefined || apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter query & apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+    skrep.cariresep(query).then(resu => {
+        skrep.bacaresep(resu.data.link).then(hsil => {
+            hdata = hsil.data
+            res.status(200).send({
+                status: 200, 
+                creator: 'Fajar Ihsana',
+                data: {
+                    judul: hdata.judul,
+                    waktu_masak: hdata.waktu_masak,
+                    hasil: hdata.hasil,
+                    tingkat_kesulitan: hdata.tingkat_kesulitan,
+                    thumbnail: hdata.thumb,
+                    bahan: hdata.bahan,
+                    langkah: hdata.langkah_langkah
+                }
+            });
+        })
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+}
 exports.randomgore = async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
