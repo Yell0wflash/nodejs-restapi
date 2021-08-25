@@ -22,6 +22,8 @@ router.get('/checkkey', async (req, res) => {
 router.get('/downloader/ytplay', youtubePlay);
 router.get('/downloader/ytmp4', youtubeMp4);
 router.get('/downloader/ytmp3', youtubeMp3);
+router.get('/downloader/sfile', fitur.sfiledown);
+router.get('/downloader/zippy', fitur.zippydl);
 
 //game
 router.get('/game/caklontong', cakLontong);
@@ -49,6 +51,9 @@ router.get('/search/drakor', fitur.drakor);
 router.get('/search/wallhd', fitur.wallpaperhd);
 router.get('/search/konachan', fitur.konachan);
 router.get('/search/wiki', fitur.wiki);
+router.get('/search/happymod', fitur.happymod);
+router.get('/search/apkmody', fitur.apkmody);
+router.get('/search/android1', fitur.android1);
 router.get('/search/resepmasakan', fitur.resepmasakan);
 
 //videomaker
