@@ -37,6 +37,7 @@ router.get('/random/gore', fitur.randomgore);
 //search
 router.get('/search/asupan', fitur.asupan);
 router.get('/search/gore', fitur.searchgore);
+router.get('/search/resepmasakan', fitur.resepmasakan);
 
 //videomaker
 router.get('/videomaker/sliding', fitur.sliding);
