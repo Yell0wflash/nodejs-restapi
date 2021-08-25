@@ -58,7 +58,7 @@ exports.resepmasakan = async(req, res) => {
         message: `apikey ${apikey} not found, please register first!`
     });
     skrep.cariresep(query).then(resu => {
-        skrep.bacaresep(resu.data.link).then(hsil => {
+        skrep.bacaresep(resu.data[0].link).then(hsil => {
             hdata = hsil.data
             res.status(200).send({
                 status: 200, 
