@@ -26,6 +26,9 @@ router.get('/downloader/ytmp3', youtubeMp3);
 //game
 router.get('/game/caklontong', cakLontong);
 
+//information
+router.get('/info/gempa', fitur.infogempa);
+
 //random
 router.get('/random/quotes', quotes);
 router.get('/random/fakta', fakta);
