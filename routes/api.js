@@ -53,7 +53,7 @@ router.get('/search/konachan', fitur.konachan);
 router.get('/search/wiki', fitur.wiki);
 router.get('/search/happymod', fitur.happymod);
 router.get('/search/apkmody', fitur.apkmody);
-router.get('/search/android1', fitur.android1);
+router.get('/search/android1', fitur.androidone);
 router.get('/search/resepmasakan', fitur.resepmasakan);
 
 //videomaker
