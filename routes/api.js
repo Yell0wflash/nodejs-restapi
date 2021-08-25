@@ -19,22 +19,30 @@ router.get('/checkkey', async (req, res) => {
     res.send({status: 200, apikey: apikey, response: 'Active'});
 });
 
-router.get('/ytplay', youtubePlay);
-router.get('/ytmp4', youtubeMp4);
-router.get('/ytmp3', youtubeMp3);
-router.get('/caklontong', cakLontong);
-router.get('/quotes', quotes);
-router.get('/fakta', fakta);
-router.get('/bijak', bijak);
-router.get('/ptl', ptl);
-router.get('/motivasi', motivasi);
-router.get('/asupan', fitur.asupan);
+router.get('/downloader/ytplay', youtubePlay);
+router.get('/downloader/ytmp4', youtubeMp4);
+router.get('/downloader/ytmp3', youtubeMp3);
+
+//game
+router.get('/game/caklontong', cakLontong);
+
+//random
+router.get('/random/quotes', quotes);
+router.get('/random/fakta', fakta);
+router.get('/random/bijak', bijak);
+router.get('/random/ptl', ptl);
+router.get('/random/motivasi', motivasi);
+router.get('/random/gore', fitur.randomgore);
+
+//search
+router.get('/search/asupan', fitur.asupan);
+router.get('/search/gore', fitur.searchgore);
+
+//videomaker
 router.get('/videomaker/sliding', fitur.sliding);
 router.get('/videomaker/colorful', fitur.colorful);
 router.get('/videomaker/army', fitur.army);
 router.get('/videomaker/bold', fitur.bold);
 router.get('/videomaker/glowing', fitur.glowing);
 router.get('/videomaker/retro', fitur.retro);
-router.get('/random/gore', fitur.randomgore);
-router.get('/search/gore', fitur.searchgore);
 module.exports = router;
