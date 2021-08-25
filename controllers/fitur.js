@@ -23,8 +23,58 @@ exports.asupan = async(req, res) => {
         })
     });
 }
-exports.sliding = async(req, res) => {
+exports.searchgore = async(req, res) => {
     const query = req.query.query;
+    const apikey = req.query.apikey;
+    if (query === undefined || apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter query & apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+    skrep.searchgore(query).then(resu => {
+        res.status(200).send({status: 200, creator: 'Fajar Ihsana', data: resu.data});
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+}
+exports.randomgore = async(req, res) => {
+    const query = req.query.query;
+    const apikey = req.query.apikey;
+    if (apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+    skrep.randomgore().then(resu => {
+        res.status(200).send({status: 200, creator: 'Fajar Ihsana', data: { 
+            judul: resu.data.judul, 
+            views: resu.data.views, 
+            comments: resu.data.comment, 
+            thumbnail: resu.data.thumb, 
+            videourl: resu.data.link
+        }});
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+}
+exports.sliding = async(req, res) => {
+    const query = req.query.text;
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
@@ -46,7 +96,7 @@ exports.sliding = async(req, res) => {
     });
 }
 exports.colorful = async(req, res) => {
-    const query = req.query.query;
+    const query = req.query.text;
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
@@ -68,7 +118,7 @@ exports.colorful = async(req, res) => {
     });
 }
 exports.army = async(req, res) => {
-    const query = req.query.query;
+    const query = req.query.text;
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
@@ -90,7 +140,7 @@ exports.army = async(req, res) => {
     });
 }
 exports.glowing = async(req, res) => {
-    const query = req.query.query;
+    const query = req.query.text;
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
@@ -112,7 +162,7 @@ exports.glowing = async(req, res) => {
     });
 }
 exports.retro = async(req, res) => {
-    const query = req.query.query;
+    const query = req.query.text;
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
@@ -134,7 +184,7 @@ exports.retro = async(req, res) => {
     });
 }
 exports.bold = async(req, res) => {
-    const query = req.query.query;
+    const query = req.query.text;
     const apikey = req.query.apikey;
     if (query === undefined || apikey === undefined) return res.status(404).send({
         status: 404,
