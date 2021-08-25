@@ -40,6 +40,7 @@ router.get('/random/motivasi', motivasi);
 router.get('/random/gore', fitur.randomgore);
 
 //search
+router.get('/search/gore', fitur.searchgore);
 router.get('/search/asupan', fitur.asupan);
 router.get('/search/sfile', fitur.sfiles);
 router.get('/search/group', fitur.grups);
