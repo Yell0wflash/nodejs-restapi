@@ -25,6 +25,9 @@ router.get('/downloader/ytmp3', youtubeMp3);
 router.get('/downloader/sfile', fitur.sfiledown);
 router.get('/downloader/zippy', fitur.zippy);
 
+//nulis
+router.get('/nulis/nuliskiri', fitur.nuliskiri);
+
 //game
 router.get('/game/caklontong', cakLontong);
 
