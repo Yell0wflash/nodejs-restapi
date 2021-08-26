@@ -27,6 +27,9 @@ router.get('/downloader/zippy', fitur.zippy);
 
 //nulis
 router.get('/nulis/nuliskiri', fitur.nuliskiri);
+router.get('/nulis/nuliskanan', fitur.nuliskanan);
+router.get('/nulis/foliokiri', fitur.foliokiri);
+router.get('/nulis/foliokanan', fitur.foliokanan);
 
 //game
 router.get('/game/caklontong', cakLontong);
