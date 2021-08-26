@@ -61,17 +61,17 @@ exports.nuliskanan = async(req, res) => {
 const splitText = query.replace(/(\S+\s*){1,9}/g, '$&\n')
 const fixHeight = splitText.split('\n').slice(0, 31).join('\n')
 spawn('convert', [
-    './media/nulis/sebelumkanan.jpg',
+    './media/nulis/images/buku/sebelumkiri.jpg',
     '-font',
-    './media/nulis/Indie-Flower.ttf',
+    './media/nulis/font/Indie-Flower.ttf',
     '-size',
     '960x1280',
     '-pointsize',
-    '22',
+    '23',
     '-interline-spacing',
     '2',
     '-annotate',
-    '+140+153',
+    '+128+129',
     fixHeight,
     './media/nulis/setelahkanan.jpg'
 ])
@@ -107,15 +107,15 @@ const fixHeight = splitText.split('\n').slice(0, 38).join('\n')
 spawn('convert', [
     './media/nulis/foliokanan.jpg',
     '-font',
-    './media/nulis/Indie-Flower.ttf',
+    './media/nulis/font/Indie-Flower.ttf',
     '-size',
-    '1720x1280',
+    '960x1280',
     '-pointsize',
     '23',
     '-interline-spacing',
-    '4',
+    '3',
     '-annotate',
-    '+48+185',
+    '+89+190',
     fixHeight,
     './media/nulis/sfoliokanan.jpg'
 ])
