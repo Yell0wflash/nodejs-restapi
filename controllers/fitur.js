@@ -3,7 +3,6 @@ const { cekKey } = require('../database/db');
 const imgbb = require('imgbb-uploader')
 const { exec, spawn } = require('child_process');
 
-
 exports.nuliskiri = async(req, res) => {
 	const query = req.query.teks;
     const apikey = req.query.apikey;
@@ -36,6 +35,136 @@ spawn('convert', [
 .on('Maaf Terjadi Kesalahan', () => console.log('Maaf Terjadi Kesalahan'))
 .on('exit', () => {
     imgbb("68cb5bee517bce4f74b0e910a5d96346", './media/nulis/setelahkiri.jpg').then(ress => {
+    res.status(200).send({status: 200, result: ress.display_url})
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+})
+}
+exports.nuliskanan = async(req, res) => {
+	const query = req.query.teks;
+    const apikey = req.query.apikey;
+    if (query === undefined || apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter teks & apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+const splitText = query.replace(/(\S+\s*){1,9}/g, '$&\n')
+const fixHeight = splitText.split('\n').slice(0, 31).join('\n')
+spawn('convert', [
+    './media/nulis/sebelumkanan.jpg',
+    '-font',
+    './media/nulis/Indie-Flower.ttf',
+    '-size',
+    '960x1280',
+    '-pointsize',
+    '22',
+    '-interline-spacing',
+    '2',
+    '-annotate',
+    '+140+153',
+    fixHeight,
+    './media/nulis/setelahkanan.jpg'
+])
+.on('Maaf Terjadi Kesalahan', () => console.log('Maaf Terjadi Kesalahan'))
+.on('exit', () => {
+    imgbb("68cb5bee517bce4f74b0e910a5d96346", './media/nulis/setelahkanan.jpg').then(ress => {
+    res.status(200).send({status: 200, result: ress.display_url})
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+})
+}
+
+exports.foliokanan = async(req, res) => {
+	const query = req.query.teks;
+    const apikey = req.query.apikey;
+    if (query === undefined || apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter teks & apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+const splitText = q.replace(/(\S+\s*){1,13}/g, '$&\n')
+const fixHeight = splitText.split('\n').slice(0, 38).join('\n')
+spawn('convert', [
+    './media/nulis/foliokanan.jpg',
+    '-font',
+    './media/nulis/Indie-Flower.ttf',
+    '-size',
+    '1720x1280',
+    '-pointsize',
+    '23',
+    '-interline-spacing',
+    '4',
+    '-annotate',
+    '+48+185',
+    fixHeight,
+    './media/nulis/sfoliokanan.jpg'
+])
+.on('Maaf Terjadi Kesalahan', () => console.log('Maaf Terjadi Kesalahan'))
+.on('exit', () => {
+    imgbb("68cb5bee517bce4f74b0e910a5d96346", './media/nulis/sfoliokanan.jpg').then(ress => {
+    res.status(200).send({status: 200, result: ress.display_url})
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+})
+}
+exports.foliokiri = async(req, res) => {
+	const query = req.query.teks;
+    const apikey = req.query.apikey;
+    if (query === undefined || apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter teks & apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+const splitText = q.replace(/(\S+\s*){1,13}/g, '$&\n')
+const fixHeight = splitText.split('\n').slice(0, 38).join('\n')
+spawn('convert', [
+    './media/nulis/foliokiri.jpg',
+    '-font',
+    './media/nulis/Indie-Flower.ttf',
+    '-size',
+    '1720x1280',
+    '-pointsize',
+    '23',
+    '-interline-spacing',
+    '4',
+    '-annotate',
+    '+48+185',
+    fixHeight,
+    './media/nulis/sfoliokiri.jpg'
+])
+.on('Maaf Terjadi Kesalahan', () => console.log('Maaf Terjadi Kesalahan'))
+.on('exit', () => {
+    imgbb("68cb5bee517bce4f74b0e910a5d96346", './media/nulis/sfoliokiri.jpg').then(ress => {
     res.status(200).send({status: 200, result: ress.display_url})
     })
     .catch(error => {
