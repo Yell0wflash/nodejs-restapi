@@ -34,9 +34,9 @@ spawn('convert', [
 ])
 .on(mess.error.api, () => reply(mess.error.api))
 .on('exit', () => {
-    const imgbb = require('imgbb-uploader')
-    anu = await imgbb("68cb5bee517bce4f74b0e910a5d96346", './media/nulis/setelahkiri.jpg')
+    imgbb("68cb5bee517bce4f74b0e910a5d96346", './media/nulis/setelahkiri.jpg').then(ress => {
     res.status(200).send({status: 200, result: anu.display_url})
+    })
     .catch(error => {
         console.log(error);
         res.status(500).send({
