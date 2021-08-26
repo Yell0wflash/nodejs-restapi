@@ -1,6 +1,51 @@
 const skrep = require("../lib/skrep");
 const { cekKey } = require('../database/db');
+const imgbb = require('imgbb-uploader')
 
+
+exports.nuliskiri = async(req, res) => {
+	const query = req.query.teks;
+    const apikey = req.query.apikey;
+    if (query === undefined || apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter teks & apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+const splitText = query.replace(/(\S+\s*){1,9}/g, '$&\n')
+const fixHeight = splitText.split('\n').slice(0, 31).join('\n')
+spawn('convert', [
+    './media/nulis/sebelumkiri.jpg',
+    '-font',
+    './media/nulis/Indie-Flower.ttf',
+    '-size',
+    '960x1280',
+    '-pointsize',
+    '22',
+    '-interline-spacing',
+    '2',
+    '-annotate',
+    '+140+153',
+    fixHeight,
+    './media/nulis/setelahkiri.jpg'
+])
+.on(mess.error.api, () => reply(mess.error.api))
+.on('exit', () => {
+    const imgbb = require('imgbb-uploader')
+    anu = await imgbb("68cb5bee517bce4f74b0e910a5d96346", './media/nulis/setelahkiri.jpg')
+    res.status(200).send({status: 200, result: anu.display_url})
+    .catch(error => {
+        console.log(error);
+        res.status(500).send({
+            status: 500,
+            message: 'Internal Server Error'
+        })
+    });
+})
+}
 exports.asupan = async(req, res) => {
     const query = req.query.query;
     const apikey = req.query.apikey;
