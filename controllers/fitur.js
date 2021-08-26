@@ -102,7 +102,7 @@ exports.foliokanan = async(req, res) => {
         status: 403,
         message: `apikey ${apikey} not found, please register first!`
     });
-const splitText = q.replace(/(\S+\s*){1,13}/g, '$&\n')
+const splitText = query.replace(/(\S+\s*){1,13}/g, '$&\n')
 const fixHeight = splitText.split('\n').slice(0, 38).join('\n')
 spawn('convert', [
     './media/nulis/foliokanan.jpg',
@@ -145,7 +145,7 @@ exports.foliokiri = async(req, res) => {
         status: 403,
         message: `apikey ${apikey} not found, please register first!`
     });
-const splitText = q.replace(/(\S+\s*){1,13}/g, '$&\n')
+const splitText = query.replace(/(\S+\s*){1,13}/g, '$&\n')
 const fixHeight = splitText.split('\n').slice(0, 38).join('\n')
 spawn('convert', [
     './media/nulis/foliokiri.jpg',
