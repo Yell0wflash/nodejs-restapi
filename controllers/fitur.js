@@ -24,7 +24,7 @@ const getBuffer = async (url, options) => {
 		console.log(`Error : ${e}`)
 	}
 }
-exports.ptl = (req, res) => {
+exports.ptl = async(req, res) => {
     const apikey = req.query.apikey;
     if (apikey === undefined) return res.status(404).send({
         status: 404,
