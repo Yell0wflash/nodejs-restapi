@@ -3,6 +3,7 @@ const { cekKey } = require('../database/db');
 const imgbb = require('imgbb-uploader')
 const { exec, spawn } = require('child_process');
 const axios = require('axios')
+const fs = require('fs')
 
 const getBuffer = async (url, options) => {
 	try {
