@@ -29,7 +29,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'html');
 app.use(expressLayout);
 app.use(express.static('public'));
 
