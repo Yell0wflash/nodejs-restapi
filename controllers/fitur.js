@@ -34,7 +34,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => console.log('Maaf Terjadi Kesalahan'))
 .on('exit', () => {
-    res.sendFile('./media/nulis/setelahkiri.jpg')
+    res.sendFile(_dirname + './media/nulis/setelahkiri.jpg')
     .catch(error => {
         console.log(error);
         res.status(500).send({
