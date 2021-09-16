@@ -567,7 +567,7 @@ exports.wallpaperhd = async(req, res) => {
         message: `apikey ${apikey} not found, please register first!`
     });
     skrep.wallpaperhd(query).then(resu => {
-	rand = resu.data[Math.floor(Math.random() * resu.data.length)]
+	rand = resu[Math.floor(Math.random() * resu.length)]
         getBuffer(rand).then(data => {
 		fs.writeFileSync('./media/wall.png')
 		res.sendFile('/app/media/wall.png')
