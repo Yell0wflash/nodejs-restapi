@@ -34,9 +34,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => console.log('Maaf Terjadi Kesalahan'))
 .on('exit', () => {
-    imgbb("68cb5bee517bce4f74b0e910a5d96346", './media/nulis/setelahkiri.jpg').then(ress => {
-    res.status(200).send({status: 200, result: ress.display_url})
-    })
+    res.sendFile('./media/nulis/setelahkiri.jpg')
     .catch(error => {
         console.log(error);
         res.status(500).send({
