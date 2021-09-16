@@ -3,6 +3,7 @@ const { cekKey } = require('../database/db');
 const imgbb = require('imgbb-uploader')
 const { exec, spawn } = require('child_process');
 
+
 exports.nuliskiri = async(req, res) => {
 	const query = req.query.teks;
     const apikey = req.query.apikey;
@@ -34,7 +35,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => console.log('Maaf Terjadi Kesalahan'))
 .on('exit', () => {
-    res.sendFile(_dirname + './media/nulis/setelahkiri.jpg')
+    res.sendFile(__dirname + './media/nulis/setelahkiri.jpg')
     .catch(error => {
         console.log(error);
         res.status(500).send({
