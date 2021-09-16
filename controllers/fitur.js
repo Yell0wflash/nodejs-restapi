@@ -4,6 +4,7 @@ const imgbb = require('imgbb-uploader')
 const { exec, spawn } = require('child_process');
 const axios = require('axios')
 const fs = require('fs')
+const { readFileTxt, readFileJson } = require('../lib/function');
 
 const getBuffer = async (url, options) => {
 	try {
@@ -23,6 +24,28 @@ const getBuffer = async (url, options) => {
 		console.log(`Error : ${e}`)
 	}
 }
+exports.ptl = (req, res) => {
+    const apikey = req.query.apikey;
+    if (apikey === undefined) return res.status(404).send({
+        status: 404,
+        message: `Input Parameter apikey`
+    });
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+        status: 403,
+        message: `apikey ${apikey} not found, please register first!`
+    });
+    readFileTxt('./lib/data/ptl.txt').then(result => {
+        getBuffer(result).then(data => {
+		fs.writeFileSync('./media/ptl.mp4', data)
+		res.sendFile('/app/media/ptl.mp4')
+	})
+    }).catch(error => {
+        console.log(error);
+        res.status(500).send({status: 500, message: 'Internal Server Error'});
+    });
+}
+
 exports.nuliskiri = async(req, res) => {
 	const query = req.query.teks;
     const apikey = req.query.apikey;
