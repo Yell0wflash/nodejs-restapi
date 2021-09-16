@@ -1,5 +1,5 @@
 const skrep = require("../lib/skrep");
-const { cekKey } = require('../database/db');w
+const { cekKey } = require('../database/db');
 const imgbb = require('imgbb-uploader')
 const { exec, spawn } = require('child_process');
 const axios = require('axios')
