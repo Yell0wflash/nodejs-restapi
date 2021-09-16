@@ -33,15 +33,9 @@ spawn('convert', [
     fixHeight,
     './media/nulis/setelahkiri.jpg'
 ])
-.on('Maaf Terjadi Kesalahan', () => console.log('Maaf Terjadi Kesalahan'))
+.on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
     res.sendFile(__dirname + './media/nulis/setelahkiri.jpg')
-    .catch(error => {
-        console.log(error);
-        res.status(500).send({
-            status: 500,
-            message: 'Internal Server Error'
-        })
     });
 })
 }
