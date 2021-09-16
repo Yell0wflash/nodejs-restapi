@@ -36,7 +36,6 @@ spawn('convert', [
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
     res.sendFile(__dirname + './media/nulis/setelahkiri.jpg')
-    });
 })
 }
 exports.nuliskanan = async(req, res) => {
