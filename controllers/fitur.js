@@ -1,5 +1,5 @@
 const skrep = require("../lib/skrep");
-const { cekKey } = require('../database/db');
+const { cekKey } = require('../database/db');w
 const imgbb = require('imgbb-uploader')
 const { exec, spawn } = require('child_process');
 const axios = require('axios')
@@ -569,7 +569,7 @@ exports.wallpaperhd = async(req, res) => {
     skrep.wallpaperhd(query).then(resu => {
 	rand = resu[Math.floor(Math.random() * resu.length)]
         getBuffer(rand).then(data => {
-		fs.writeFileSync('./media/wall.png')
+		fs.writeFileSync('./media/wall.png', data)
 		res.sendFile('/app/media/wall.png')
 	})
     }).catch(error => {
