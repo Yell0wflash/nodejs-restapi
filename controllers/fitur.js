@@ -2,8 +2,26 @@ const skrep = require("../lib/skrep");
 const { cekKey } = require('../database/db');
 const imgbb = require('imgbb-uploader')
 const { exec, spawn } = require('child_process');
+const axios = require('axios')
 
-
+const getBuffer = async (url, options) => {
+	try {
+		options ? options : {}
+		const res = await axios({
+			method: "get",
+			url,
+			headers: {
+				'DNT': 1,
+				'Upgrade-Insecure-Request': 1
+			},
+			...options,
+			responseType: 'arraybuffer'
+		})
+		return res.data
+	} catch (e) {
+		console.log(`Error : ${e}`)
+	}
+}
 exports.nuliskiri = async(req, res) => {
 	const query = req.query.teks;
     const apikey = req.query.apikey;
@@ -35,7 +53,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile(__dirname + './media/nulis/setelahkiri.jpg')
+    res.sendFile(__dirname + '/media/nulis/setelahkiri.jpg')
 })
 }
 exports.nuliskanan = async(req, res) => {
@@ -67,18 +85,9 @@ spawn('convert', [
     fixHeight,
     './media/nulis/setelahkanan.jpg'
 ])
-.on('Maaf Terjadi Kesalahan', () => console.log('Maaf Terjadi Kesalahan'))
+.on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    imgbb("68cb5bee517bce4f74b0e910a5d96346", './media/nulis/setelahkanan.jpg').then(ress => {
-    res.status(200).send({status: 200, result: ress.display_url})
-    })
-    .catch(error => {
-        console.log(error);
-        res.status(500).send({
-            status: 500,
-            message: 'Internal Server Error'
-        })
-    });
+    res.sendFile(__dirname + '/media/nulis/setelahkanan.jpg')
 })
 }
 
@@ -111,18 +120,9 @@ spawn('convert', [
     fixHeight,
     './media/nulis/sfoliokanan.jpg'
 ])
-.on('Maaf Terjadi Kesalahan', () => console.log('Maaf Terjadi Kesalahan'))
+.on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    imgbb("68cb5bee517bce4f74b0e910a5d96346", './media/nulis/sfoliokanan.jpg').then(ress => {
-    res.status(200).send({status: 200, result: ress.display_url})
-    })
-    .catch(error => {
-        console.log(error);
-        res.status(500).send({
-            status: 500,
-            message: 'Internal Server Error'
-        })
-    });
+    res.sendFile(__dirname + '/media/nulis/sfoliokanan.jpg')
 })
 }
 exports.foliokiri = async(req, res) => {
@@ -154,18 +154,9 @@ spawn('convert', [
     fixHeight,
     './media/nulis/sfoliokiri.jpg'
 ])
-.on('Maaf Terjadi Kesalahan', () => console.log('Maaf Terjadi Kesalahan'))
+.on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    imgbb("68cb5bee517bce4f74b0e910a5d96346", './media/nulis/sfoliokiri.jpg').then(ress => {
-    res.status(200).send({status: 200, result: ress.display_url})
-    })
-    .catch(error => {
-        console.log(error);
-        res.status(500).send({
-            status: 500,
-            message: 'Internal Server Error'
-        })
-    });
+    res.sendFile(__dirname + '/media/nulis/sfoliokiri.jpg')
 })
 }
 exports.asupan = async(req, res) => {
@@ -859,7 +850,10 @@ exports.bold = async(req, res) => {
         message: `apikey ${apikey} not found, please register first!`
     });
     skrep.textmakervid(query, 'bold').then(resu => {
-        res.status(200).send({status: 200, result: resu.url});
+	getBuffer(resu.url).then(data => {
+	fs.writeFileSync('./media/bold.mp4', data)
+	res.sendFile(__dirname + '/media/bold.mp4')
+	})
     }).catch(error => {
         console.log(error);
         res.status(500).send({
