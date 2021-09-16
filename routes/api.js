@@ -41,7 +41,7 @@ router.get('/info/gempa', fitur.infogempa);
 router.get('/random/quotes', quotes);
 router.get('/random/fakta', fakta);
 router.get('/random/bijak', bijak);
-router.get('/random/ptl', ptl);
+router.get('/random/ptl', fitur.ptl);
 router.get('/random/motivasi', motivasi);
 router.get('/random/gore', fitur.randomgore);
 
