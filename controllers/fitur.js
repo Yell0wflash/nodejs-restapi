@@ -54,7 +54,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile(__dirname + '/media/nulis/setelahkiri.jpg')
+    res.sendFile('./app/media/nulis/setelahkiri.jpg')
 })
 }
 exports.nuliskanan = async(req, res) => {
@@ -88,7 +88,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile(__dirname + '/media/nulis/setelahkanan.jpg')
+    res.sendFile('./app/media/nulis/setelahkanan.jpg')
 })
 }
 
@@ -123,7 +123,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile(__dirname + '/media/nulis/sfoliokanan.jpg')
+    res.sendFile('./app/media/nulis/sfoliokanan.jpg')
 })
 }
 exports.foliokiri = async(req, res) => {
@@ -157,7 +157,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile(__dirname + '/media/nulis/sfoliokiri.jpg')
+    res.sendFile('./app/media/nulis/sfoliokiri.jpg')
 })
 }
 exports.asupan = async(req, res) => {
@@ -853,7 +853,7 @@ exports.bold = async(req, res) => {
     skrep.textmakervid(query, 'bold').then(resu => {
 	getBuffer(resu.url).then(data => {
 	fs.writeFileSync('./media/bold.mp4', data)
-	res.sendFile(__dirname + '/media/bold.mp4')
+	res.sendFile('./app/media/bold.mp4')
 	})
     }).catch(error => {
         console.log(error);
