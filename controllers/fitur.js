@@ -88,7 +88,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile('./app/media/nulis/setelahkanan.jpg')
+    res.sendFile('/app/media/nulis/setelahkiri.jpg')
 })
 }
 
@@ -123,7 +123,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile('./app/media/nulis/sfoliokanan.jpg')
+    res.sendFile('/app/media/nulis/setelahkiri.jpg')
 })
 }
 exports.foliokiri = async(req, res) => {
@@ -157,7 +157,7 @@ spawn('convert', [
 ])
 .on('Maaf Terjadi Kesalahan', () => res.status(404).send({status: 'error'}))
 .on('exit', () => {
-    res.sendFile('./app/media/nulis/sfoliokiri.jpg')
+    res.sendFile('/app/media/nulis/setelahkiri.jpg')
 })
 }
 exports.asupan = async(req, res) => {
@@ -567,11 +567,11 @@ exports.wallpaperhd = async(req, res) => {
         message: `apikey ${apikey} not found, please register first!`
     });
     skrep.wallpaperhd(query).then(resu => {
-        res.status(200).send({
-            status: 200,
-            creator: 'Fajar Ihsana',
-            data: resu
-        });
+	rand = resu.data[Math.floor(Math.random() * resu.data.length)]
+        getBuffer(rand).then(data => {
+		fs.writeFileSync('./media/wall.png')
+		res.sendFile('/app/media/wall.png')
+	})
     }).catch(error => {
         console.log(error);
         res.status(500).send({
