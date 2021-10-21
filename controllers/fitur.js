@@ -195,8 +195,8 @@ exports.asupan = async(req, res) => {
         status: 403,
         message: `apikey ${apikey} not found, please register first!`
     });
-    skrep.asupantiktok(query).then(resu => {
-        res.status(200).send({status: 200, creator: 'Fajar Ihsana', username: resu.username, data: { caption: resu.media.caption, likes: resu.media.likes, comments: resu.media.comments, share: resu.media.share, videourl: resu.media.videourl}});
+    skrep.randomtt(query).then(resu => {
+        res.status(200).send(resu);
     }).catch(error => {
         console.log(error);
         res.status(500).send({
